@@ -14,7 +14,7 @@ testNothing() {
 }
 
 testGitAttributesLf() {
-    echo "* text eol=lf\n*.txt text\n" > "${0%/*}/../.gitattributes"
+    echo $"* text eol=lf\n*.txt text\n" > "${0%/*}/../.gitattributes"
 
     git add -A && git commit -m 'test' &> /dev/null && git push origin test &> /dev/null && \
     git clone $(git config remote.origin.url) tmprepo &> /dev/null && cd tmprepo && \
@@ -26,7 +26,7 @@ testGitAttributesLf() {
 
 
 testGitAttributesAuto() {
-    echo "* text auto\n*.txt text\n" > "${0%/*}/../.gitattributes"
+    echo $"* text auto\n*.txt text\n" > "${0%/*}/../.gitattributes"
 
     git add -A && git commit -m 'test' &> /dev/null && git push origin test &> /dev/null && \
     git clone $(git config remote.origin.url) tmprepo &> /dev/null && cd tmprepo && \
@@ -36,9 +36,9 @@ testGitAttributesAuto() {
     assertEquals "This file does not have other then LF end lines" 0 `file tmprepo/lf.txt | grep -c "terminators"`
 }
 
-# It does not work with OSX and GIT v2.2.2
+# It does not work with OSX and GIT v2.2.2 and v1.9.3
 testGitConfigEol() {
-    echo "[core]\n\tcore.eol = lf\n" > "${0%/*}/../.gitconfig"
+    echo $"[core]\n\tcore.eol = lf\n" > "${0%/*}/../.gitconfig"
 
     git add -A && git commit -m 'test' &> /dev/null && git push origin test &> /dev/null && \
     git clone $(git config remote.origin.url) tmprepo &> /dev/null && cd tmprepo && \
@@ -48,9 +48,9 @@ testGitConfigEol() {
     assertEquals "This file does not have other then LF end lines" 0 `file tmprepo/lf.txt | grep -c "terminators"`
 }
 
-# It does not work with OSX and GIT v2.2.2
+# It does not work with OSX and GIT v2.2.2 and v1.9.3
 testGitConfigInput() {
-    echo "[core]\n\tcore.autocrlf = input\n" > "${0%/*}/../.gitconfig"
+    echo $"[core]\n\tcore.autocrlf = input\n" > "${0%/*}/../.gitconfig"
 
     git add -A && git commit -m 'test' &> /dev/null && git push origin test &> /dev/null && \
     git clone $(git config remote.origin.url) tmprepo &> /dev/null && cd tmprepo && \
@@ -60,9 +60,9 @@ testGitConfigInput() {
     assertEquals "This file does not have other then LF end lines" 0 `file tmprepo/lf.txt | grep -c "terminators"`
 }
 
-# It does not work with OSX and GIT v2.2.2
+# It does not work with OSX and GIT v2.2.2 and v1.9.3
 testGitConfigTrue() {
-    echo "[core]\n\tcore.autocrlf = true\n" > "${0%/*}/../.gitconfig"
+    echo $"[core]\n\tcore.autocrlf = true\n" > "${0%/*}/../.gitconfig"
 
     git add -A && git commit -m 'test' &> /dev/null && git push origin test &> /dev/null && \
     git clone $(git config remote.origin.url) tmprepo &> /dev/null && cd tmprepo && \
@@ -72,9 +72,9 @@ testGitConfigTrue() {
     assertEquals "This file does not have other then LF end lines" 0 `file tmprepo/lf.txt | grep -c "terminators"`
 }
 
-# It does not work with OSX and GIT v2.2.2
+# It does not work with OSX and GIT v2.2.2 and v1.9.3
 testGitConfigTrueAndSafe() {
-    echo "[core]\n\tcore.autocrlf = true\n\tcore.safeocrlf = true\n" > "${0%/*}/../.gitconfig"
+    echo $"[core]\n\tcore.autocrlf = true\n\tcore.safeocrlf = true\n" > "${0%/*}/../.gitconfig"
 
     git add -A && git commit -m 'test' &> /dev/null && git push origin test &> /dev/null && \
     git clone $(git config remote.origin.url) tmprepo &> /dev/null && cd tmprepo && \
