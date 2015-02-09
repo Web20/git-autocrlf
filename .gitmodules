@@ -1,0 +1,3 @@
+[submodule "vendors/shunit2"]
+	path = vendors/shunit2
+	url = git@github.com:Web20/shunit2.git
