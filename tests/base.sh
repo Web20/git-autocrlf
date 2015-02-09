@@ -3,6 +3,7 @@
 oneTimeSetUp() {
     git config core.autocrlf false
     git config core.safecrlf false
+    git config core.eol false
 }
 
 clean() {
@@ -17,7 +18,8 @@ clean() {
 setUp() {
     clean
     git checkout -b test &> /dev/null
-    cp tests/resources/crlf.txt ./
+    rm "${0%/*}/../.gitattributes"
+    cp tests/resources/crlf.txtcr ./crlf.txt
     cp tests/resources/lf.txt ./
     cp tests/resources/cr.txt ./
 }
